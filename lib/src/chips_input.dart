@@ -184,6 +184,13 @@ class ChipsInputState<T> extends State<ChipsInput<T>>
     super.dispose();
   }
 
+  void connectionClosed() {
+    if (_hasInputConnection) {
+      _connection.close();
+      _connection = null;
+    }
+  }
+
   void requestKeyboard() {
     if (_focusNode.hasFocus) {
       _openInputConnection();
